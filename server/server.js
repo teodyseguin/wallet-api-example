@@ -6,17 +6,23 @@ let app = express();
 
 app.use('/v1/wallet/api', function() {});
 
-app.use('/v1/wallet/api/users', function() {});
+// API to create a user
+app.put('/v1/wallet/api/users', function() {});
 
-app.use('/v1/wallet/api/users', function() {});
+// API to pull the list of users
+app.get('/v1/wallet/api/users', function() {});
 
-app.use('/v1/wallet/api/users/<id>', function() {});
+// API to pull a specific user account detail
+app.get('/v1/wallet/api/users/<id>', function() {});
 
-app.use('/v1/wallet/api/users/<id>/debit/<amount>', function() {});
+// API to debit a specific user account balance
+app.put('/v1/wallet/api/users/<id>/debit/<amount>', function() {});
 
-app.use('/v1/wallet/api/users/<id>/credit/<amount>', function() {});
+// API to credit a specific user account balance
+app.put('/v1/wallet/api/users/<id>/credit/<amount>', function() {});
 
-app.use('/v1/wallet/api/users/<id>/balance', function() {});
+// API to pull a specific user account balance
+app.get('/v1/wallet/api/users/<id>/balance', function() {});
 
 let server = app.listen(3000, function () {
     let host = server.address().address;
