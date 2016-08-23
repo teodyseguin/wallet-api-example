@@ -1,19 +1,14 @@
 'use strict';
 
-const express = require('express');
+const express = require('express'),
+    userRouter = require('./components/user/user-router');
 
 let app = express();
 
 app.use('/v1/wallet/api', function() {});
 
 // API to create a user
-app.put('/v1/wallet/api/users', function() {});
-
-// API to pull the list of users
-app.get('/v1/wallet/api/users', function() {});
-
-// API to pull a specific user account detail
-app.get('/v1/wallet/api/users/<id>', function() {});
+app.use('/v1/wallet/api/users', userRouter);
 
 // API to debit a specific user account balance
 app.put('/v1/wallet/api/users/<id>/debit/<amount>', function() {});
