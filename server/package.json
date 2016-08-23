@@ -10,6 +10,7 @@
   "author": "Teody C. Seguin",
   "license": "ISC",
   "devDependencies": {
+    "bcrypt": "^0.8.7",
     "express": "^4.14.0",
     "mongoose": "^4.5.9",
     "passport": "^0.3.2"
