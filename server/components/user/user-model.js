@@ -1,18 +1,15 @@
 'use strict';
 
-const config = require('../../config.json'),
-    mongoose = require('mongoose'),
-    Schema = mongoose.Schema;
+const dbService = require('../../services/dbconnection'),
+    mongoose = require('mongoose');
 
 class UserModel {
     constructor() {
-        super();
-
-        this.schema = new Schema({
+        this.Schema = mongoose.Schema({
             email: {
                 lowercase: true,
-                match: [/ ^.+@.+\..+$/,
-                    'Invalid email address. Emails must look something like "someone@email.com.'],
+                match: [/^.+@.+\..+$/,
+                    'Invalid email address. Emails must look something like "someone@email.com."'],
                 require: [true, '{PATH} is required.'],
                 type: String,
                 message: 'Invalid email address! Please .....',
@@ -29,12 +26,16 @@ class UserModel {
             }
         });
 
-        this.model = mongoose.model('user', this.schema);
+        let connection = dbService.getConnection();
+
+        if (connection) {
+            this.Model = connection.model('user', this.Schema);
+        }
     }
 
     getUserModel() {
-        return this.model;
+        return this.Model;
     }
 }
 
-module.exports.UserModel = new UserModel();
+module.exports.UserModel = UserModel;
