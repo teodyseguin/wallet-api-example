@@ -10,7 +10,7 @@ class UserController {
         var model = userModel.getUserModel();
 
         if (model) {
-            var user = new model({email: 'someone@email.com', name: 'teody', password: 'gunraixfillup@#1234'});
+            var user = new model({email: 'someone@email.com', name: 'teody', password: 'thequickbrownfox'});
             user.save(err => {
                 if (err) {
                     console.log(err);
