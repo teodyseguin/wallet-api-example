@@ -16,6 +16,7 @@
     "body-parser": "^1.15.2",
     "express": "^4.14.0",
     "forever": "^0.15.2",
+    "mocha": "^3.0.2",
     "mongoose": "^4.5.9",
     "passport": "^0.3.2"
   }
