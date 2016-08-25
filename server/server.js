@@ -1,12 +1,13 @@
 'use strict';
 
-const express = require('express'),
+const bodyParser = require('body-parser'),
+    express = require('express'),
     userRouter = require('./components/user/user-router'),
     dbService = require('./services/dbconnection');
 
 let app = express();
 
-// app.use('/v1/wallet/api', function() {});
+app.use(bodyParser.json());
 
 // API to create a user
 app.use('/v1/wallet/api/users', userRouter);
