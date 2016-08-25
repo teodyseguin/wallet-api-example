@@ -29,7 +29,7 @@ class UserModel {
         });
 
         this.Schema
-            .pre('save', (next) => {
+            .pre('save', function(next) {
                 let user = this;
 
                 if (user.isModified('password')) {
