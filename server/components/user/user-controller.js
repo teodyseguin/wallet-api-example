@@ -5,8 +5,6 @@ const responseHandler = require('../../services/response-handler'),
 
 class UserController {
     create(req, res, next) {
-        console.log('> create()');
-
         var userModel = new UserModel();
         var model = userModel.getUserModel();
 
