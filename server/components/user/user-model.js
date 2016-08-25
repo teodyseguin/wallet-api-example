@@ -7,6 +7,8 @@ const bcrypt = require('bcrypt'),
 
 class UserModel {
     constructor() {
+        // Initialize the schema. We have some immediate validations going on here
+        // especially for the email field, as we don't want to accept bogus like email
         this.Schema = mongoose.Schema({
             email: {
                 lowercase: true,
@@ -28,6 +30,8 @@ class UserModel {
             }
         });
 
+        // We are implementing pre-save process here to generate a salt password
+        // equivalent, from the submitted password on the request
         this.Schema
             .pre('save', function(next) {
                 let user = this;
@@ -53,13 +57,28 @@ class UserModel {
                 }
             });
 
+        // We want to make use of the cached connection, which actually
+        // happens upon starting the app server, but there must be a
+        // fallback, whenever there is no cached connection made
         let connection = dbService.getConnection();
 
         if (connection) {
             this.Model = connection.model('user', this.Schema);
         }
+        // @TODO need to implement a fallback process
+        // if cached connection is not made
     }
 
+    /**
+     * Method to retrieve the cached user model
+     *
+     * @see UserController.create() for understanding
+     * the purpose of this method.
+     *
+     * @returns
+     *  The generated model, which is essentially will become
+     *  a document in the database
+     */
     getUserModel() {
         return this.Model;
     }
