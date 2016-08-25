@@ -1,9 +1,12 @@
 'use strict';
 
 const bodyParser = require('body-parser'),
+    env = process.env.NODE_ENV || 'dev',
+    dataconf = require('./config')[env],
+    dbService = require('./services/dbconnection'),
     express = require('express'),
-    userRouter = require('./components/user/user-router'),
-    dbService = require('./services/dbconnection');
+    logger = require('./services/logger').logger,
+    userRouter = require('./components/user/user-router');
 
 let app = express();
 
@@ -23,22 +26,36 @@ app.get('/v1/wallet/api/users/<id>/balance', function() {});
 
 (function() {
     if (!dbService.getConnection()) {
-        dbService.connect(err => {
-            if (err) {
-                console.log(err);
-                console.log('can\'t connect to MLab')
-                return;
-            }
+        let connectionOptions = {
+            db: { native_parser: true },
+            server: { poolSize: 5 },
+            replset: { rs_name: 'myReplicaSetName' },
+            user: dataconf.mongodb.username,
+            pass: dataconf.mongodb.password,
+            promiseLibrary: require('bluebird')
+        };
 
-            console.log('> Connected to MLab');
-            console.log('> Initiating the App');
+        dbService.connect(
+            dataconf.mongodb.host,
+            dataconf.mongodb.dbname,
+            dataconf.mongodb.port,
+            connectionOptions,
+            err => {
+                if (err) {
+                    logger(err);
+                    logger('can\'t connect to MLab')
+                    return;
+                }
 
-            let server = app.listen(3000, function () {
-                let host = server.address().address;
-                let port = server.address().port;
+                logger('> Connected to MLab');
+                logger('> Initiating the App');
 
-                console.log('> Wallet API Started!', host == '::' ? 'localhost': host, port);
-            });
+                let server = app.listen(3000, function () {
+                    let host = server.address().address;
+                    let port = server.address().port;
+
+                    logger('> Wallet API Started!', host == '::' ? 'localhost': host, port);
+                });
         });
     }
 })();
