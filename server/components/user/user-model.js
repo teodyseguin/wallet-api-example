@@ -1,7 +1,9 @@
 'use strict';
 
-const dbService = require('../../services/dbconnection'),
-    mongoose = require('mongoose');
+const bcrypt = require('bcrypt'),
+    dbService = require('../../services/dbconnection'),
+    mongoose = require('mongoose'),
+    work_factor = 10;
 
 class UserModel {
     constructor() {
@@ -25,6 +27,31 @@ class UserModel {
                 type: String
             }
         });
+
+        this.Schema
+            .pre('save', function(next) {
+                let user = this;
+
+                if (user.isModified('password')) {
+                    bcrypt.genSalt(work_factor, function(err, salt) {
+                        if (err) {
+                            return next(err);
+                        }
+
+                        // hash the password along with our new salt
+                        bcrypt.hash(user.password, salt, function(err, hash) {
+                            if (err) {
+                                return next(err);
+                            }
+                            // override the cleartext password with the hashed one
+                            user.password = hash;
+                            next();
+                        });
+                    });
+                } else {
+                    next();
+                }
+            });
 
         let connection = dbService.getConnection();
 
