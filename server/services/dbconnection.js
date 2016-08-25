@@ -1,18 +1,9 @@
 'use strict';
 
-const env = process.env.NODE_ENV || 'dev',
-    dataconf = require('../config')[env];
-
-let connection = null,
-    connectionOptions = {
-        db: { native_parser: true },
-        server: { poolSize: 5 },
-        replset: { rs_name: 'myReplicaSetName' },
-        user: dataconf.mongodb.username,
-        pass: dataconf.mongodb.password,
-        promiseLibrary: require('bluebird')
-    },
+const logger = require('./logger').logger,
     mongoose = require('mongoose');
+
+let connection = null;
 
 /**
  * Function to establish a connection to the database
@@ -20,23 +11,18 @@ let connection = null,
  * @param callback
  *  The returned function which contains a specified response
  */
-function connect(callback) {
-    console.log('> Trying to connect now');
+function connect(host, dbname, port, options, callback) {
+    logger('> Trying to connect now');
 
-    connection = mongoose.createConnection(
-        dataconf.mongodb.host,
-        dataconf.mongodb.dbname,
-        dataconf.mongodb.port,
-        connectionOptions,
-        function connectionError(err) {
-            if (typeof callback === 'function') {
-                if (err) {
-                    return callback(err);
-                }
-
-                return callback(null);
+    connection = mongoose.createConnection(host, dbname, port, options, function connectionError(err) {
+        if (typeof callback === 'function') {
+            if (err) {
+                return callback(err);
             }
-        });
+
+            return callback(null);
+        }
+    });
 
     connection.on('error', console.error.bind(console, 'connection error:'));
 }
@@ -50,11 +36,11 @@ function connect(callback) {
  */
 function getConnection() {
     if (connection == null) {
-        console.log('> Opening new connection to MLab');
+        logger('> Opening new connection to MLab');
         return false;
     }
 
-    console.log('> Returning the cached connection from MLab');
+    logger('> Returning the cached connection from MLab');
     return connection;
 }
 
