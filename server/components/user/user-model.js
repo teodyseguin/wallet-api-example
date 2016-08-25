@@ -29,17 +29,17 @@ class UserModel {
         });
 
         this.Schema
-            .pre('save', function(next) {
+            .pre('save', (next) => {
                 let user = this;
 
                 if (user.isModified('password')) {
-                    bcrypt.genSalt(work_factor, function(err, salt) {
+                    bcrypt.genSalt(work_factor, (err, salt) => {
                         if (err) {
                             return next(err);
                         }
 
                         // hash the password along with our new salt
-                        bcrypt.hash(user.password, salt, function(err, hash) {
+                        bcrypt.hash(user.password, salt, (err, hash) => {
                             if (err) {
                                 return next(err);
                             }
