@@ -12,6 +12,9 @@ let app = express();
 
 app.use(bodyParser.json());
 
+// API to authenticate incoming user
+app.use('/v1/wallet/api/auth', function() {});
+
 // API to create a user
 app.use('/v1/wallet/api/users', userRouter);
 
