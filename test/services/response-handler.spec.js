@@ -1,5 +1,7 @@
 'use strict';
 
+process.env.NODE_ENV = 'test';
+
 const responseHandler = require('../../server/services/response-handler'),
     should = require('should'),
     sinon = require('sinon');
