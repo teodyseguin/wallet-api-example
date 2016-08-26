@@ -11,14 +11,18 @@
   },
   "author": "Teody C. Seguin",
   "license": "ISC",
-  "devDependencies": {
+  "dependencies": {
     "bcrypt": "^0.8.7",
     "body-parser": "^1.15.2",
     "express": "^4.14.0",
-    "forever": "^0.15.2",
-    "mocha": "^3.0.2",
     "mongoose": "^4.5.9",
-    "passport": "^0.3.2",
+    "passport": "^0.3.2"
+  },
+  "devDependencies": {
+    "forever": "^0.15.2",
+    "gulp": "^3.9.1",
+    "istanbul": "^0.4.5",
+    "mocha": "^3.0.2",
     "should": "^11.1.0",
     "sinon": "^1.17.5"
   }
