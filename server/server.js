@@ -8,11 +8,19 @@ const bodyParser = require('body-parser'),
     logger = require('./services/logger').logger,
     passport = require('passport'),
     userRouter = require('./components/user/user-router'),
-    authRouter = require('./components/auth/auth-router');
+    authRouter = require('./components/auth/auth-router'),
+    authService = require('./components/auth/auth-service');
 
 let app = express();
 
 app.use(bodyParser.json());
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+passport.use(authService.localStrategy);
+passport.serializeUser(authService.serializeUser);
+passport.deserializeUser(authService.deserializeUser);
 
 // API to authenticate incoming user
 app.use('/v1/wallet/api/auth', authRouter);
