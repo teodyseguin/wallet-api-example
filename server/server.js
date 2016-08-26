@@ -2,18 +2,20 @@
 
 const bodyParser = require('body-parser'),
     env = process.env.NODE_ENV || 'dev',
+    express = require('express'),
     dataconf = require('./config')[env],
     dbService = require('./services/dbconnection'),
-    express = require('express'),
     logger = require('./services/logger').logger,
-    userRouter = require('./components/user/user-router');
+    passport = require('passport'),
+    userRouter = require('./components/user/user-router'),
+    authRouter = require('./components/auth/auth-router');
 
 let app = express();
 
 app.use(bodyParser.json());
 
 // API to authenticate incoming user
-app.use('/v1/wallet/api/auth', function() {});
+app.use('/v1/wallet/api/auth', authRouter);
 
 // API to create a user
 app.use('/v1/wallet/api/users', userRouter);
