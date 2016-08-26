@@ -18,7 +18,7 @@ function printResponse(error, response, docs) {
         response.end();
         return {
             error: true,
-            message: error
+            message: JSON.stringify(error)
         };
     }
 
@@ -27,7 +27,8 @@ function printResponse(error, response, docs) {
         response.write(JSON.stringify(docs));
         response.end();
         return {
-            error: false
+            error: false,
+            resource: JSON.stringify(docs)
         }
     }
     catch(err) {
