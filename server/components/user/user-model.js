@@ -82,6 +82,10 @@ class UserModel {
     getUserModel() {
         return this.Model;
     }
+
+    getUserSchema() {
+        return this.Schema;
+    }
 }
 
 module.exports.UserModel = UserModel;
