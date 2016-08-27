@@ -1,17 +1,12 @@
 'use strict';
 
 const responseHandler = require('../../services/response-handler'),
-    UserModel = require('./user-model').UserModel;
+    UserFactory = require('./user-factory');
 
+/**
+ * This class is more on providing behavior to the User component.
+ */
 class UserController {
-    constructor() {
-        // Initially set this to null, but on succeeding calls, we need
-        // to cache the value from here. The reason is to prevent
-        // from getting the error of overwriting the model, which is
-        // already been compiled by mongoose
-        this.Model = null;
-    }
-
     /**
      * Method to create a user account, and store it to the database
      *
@@ -21,17 +16,14 @@ class UserController {
      *  The response parameter
      */
     create(req, res) {
-        if (this.Model == null) {
-            this.Model = new UserModel();
-        }
-
-        let modelInstance = this.Model.getUserModel();
+        let User = UserFactory.getUser(),
+            modelInstance = User.getUserModel();
 
         // I just want to make sure that a model is generated
         // and I don't want to continue when it is none
         if (modelInstance) {
-            let user = new modelInstance(req.body);
-            user
+            let userModel = new modelInstance(req.body);
+            userModel
                 .save()
                 .then(
                     function userResolution(u) {
