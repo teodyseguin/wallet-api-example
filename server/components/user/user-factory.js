@@ -11,15 +11,15 @@ let UserObject = null;
  * @returns
  *  The UserObject which holds the User model/schema
  */
-function getUser() {
-    if (UserObject == null) {
-        UserObject = new User();
+let UserFactory = {
+    getUser: function() {
+        if (UserObject == null) {
+            UserObject = new User();
+            return UserObject;
+        }
+
         return UserObject;
     }
-
-    return UserObject;
-}
-
-module.exports = {
-    getUser
 };
+
+module.exports.UserFactory = UserFactory;
