@@ -1,7 +1,7 @@
 'use strict';
 
 const responseHandler = require('../../services/response-handler'),
-    UserFactory = require('./user-factory').UserFactory;
+    UserService = require('./user-service').UserService;
 
 /**
  * This class is more on providing behavior to the User component.
@@ -16,7 +16,7 @@ class UserController {
      *  The response parameter
      */
     create(req, res) {
-        let User = UserFactory.getUser(),
+        let User = UserService.getUser(),
             modelInstance = User.getUserModel();
 
         // I just want to make sure that a model is generated
