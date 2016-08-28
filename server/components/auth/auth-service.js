@@ -1,30 +1,51 @@
 'use strict';
 
-var LocalStrategy = require('passport-local').Strategy;
-var User = require('../models/user.js');
+const LocalStrategy = require('passport-local').Strategy,
+    UserService = require('../user/user-service').UserService;
 
-module.exports = {
-    localStrategy: new LocalStrategy({
+let User = UserService.getUser(),
+    modelInstance = User.getUserModel();
+
+function deserializeUser(id, callback) {
+    modelInstance.findById(
+        {
+            _id: id
+        },
+        '-password',
+        (err, user) => {
+            if (err) {
+                callback(err, null);
+            }
+            else {
+                callback(err, user);
+            }
+        }
+    );
+}
+
+function ensureAuthenticated(req, res, next) {
+    if (req.isAuthenticated()) {
+        return next();
+    }
+    else {
+        return res.status(401).send();
+    }
+}
+
+function localStrategy() {
+    return new LocalStrategy({
         usernameField: 'email',
         passwordField: 'password'
-    }, User.verifyMatch),
-    serializeUser: function (user, done) {
-        done(null, user._id);
-    },
-    deserializeUser: function (id, done) {
-        User.findById({ _id: id }, '-password', function (error, user) {
-            if (error) {
-                done(error, null);
-            } else {
-                done(error, user);
-            }
-        });
-    },
-    ensureAuthenticated: function (req, res, next) {
-        if (req.isAuthenticated()) {
-            return next();
-        } else {
-            return res.status(401).send();
-        }
-    }
+    }, modelInstance.verifyMatch);
+}
+
+function serializeUser(user, callback) {
+    callback(null, user._id);
+}
+
+module.exports = {
+    deserializeUser,
+    ensureAuthenticated,
+    localStrategy,
+    serializeUser
 };
