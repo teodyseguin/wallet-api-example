@@ -4,14 +4,14 @@ const User = require('./user-model').User;
 let UserObject = null;
 
 /**
- * This is the factory function to return the instantiated User object.
+ * This is the service object to return the instantiated User object.
  * If the User object is not instantiated, it will instantiate it first
  * before sending it back to the requiring logic
  *
  * @returns
  *  The UserObject which holds the User model/schema
  */
-let UserFactory = {
+let UserService = {
     getUser: function() {
         if (UserObject == null) {
             UserObject = new User();
@@ -22,4 +22,4 @@ let UserFactory = {
     }
 };
 
-module.exports.UserFactory = UserFactory;
+module.exports.UserService = UserService;
