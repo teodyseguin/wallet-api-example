@@ -6,7 +6,6 @@ const bodyParser = require('body-parser'),
     dataconf = require('./config')[env],
     dbService = require('./services/dbconnection'),
     logger = require('./services/logger').logger,
-    passport = require('passport'),
     userRouter = require('./components/user/user-router'),
     authRouter = require('./components/auth/auth-router');
 
@@ -14,8 +13,6 @@ let app = express();
 
 app.use(bodyParser.json());
 
-// API to authenticate incoming user
-app.use('/v1/wallet/api/auth', authRouter);
 // API to create a user
 app.use('/v1/wallet/api/users', userRouter);
 
@@ -52,14 +49,18 @@ app.use('/v1/wallet/api/users', userRouter);
                     logger('> Wallet API Started!', host == '::' ? 'localhost': host, port);
                 });
 
-                let authService = require('./components/auth/auth-service');
+                let authService = require('./components/auth/auth-service'),
+                    passport = require('passport');
 
                 app.use(passport.initialize());
                 app.use(passport.session());
 
-                passport.use(authService.localStrategy);
+                passport.use(authService.localStrategy());
                 passport.serializeUser(authService.serializeUser);
                 passport.deserializeUser(authService.deserializeUser);
+
+                // API to authenticate incoming user
+                app.use('/v1/wallet/api/auth', authRouter);
         });
     }
 })();
