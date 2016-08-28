@@ -1,7 +1,7 @@
 'use strict';
 
 const responseHandler = require('../../services/response-handler'),
-    UserFactory = require('./user-factory');
+    UserFactory = require('./user-factory').UserFactory;
 
 /**
  * This class is more on providing behavior to the User component.
