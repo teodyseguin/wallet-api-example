@@ -8,34 +8,16 @@ const bodyParser = require('body-parser'),
     logger = require('./services/logger').logger,
     passport = require('passport'),
     userRouter = require('./components/user/user-router'),
-    authRouter = require('./components/auth/auth-router'),
-    authService = require('./components/auth/auth-service');
+    authRouter = require('./components/auth/auth-router');
 
 let app = express();
 
 app.use(bodyParser.json());
 
-app.use(passport.initialize());
-app.use(passport.session());
-
-passport.use(authService.localStrategy);
-passport.serializeUser(authService.serializeUser);
-passport.deserializeUser(authService.deserializeUser);
-
 // API to authenticate incoming user
 app.use('/v1/wallet/api/auth', authRouter);
-
 // API to create a user
 app.use('/v1/wallet/api/users', userRouter);
-
-// API to debit a specific user account balance
-app.put('/v1/wallet/api/users/<id>/debit/<amount>', function() {});
-
-// API to credit a specific user account balance
-app.put('/v1/wallet/api/users/<id>/credit/<amount>', function() {});
-
-// API to pull a specific user account balance
-app.get('/v1/wallet/api/users/<id>/balance', function() {});
 
 (function() {
     if (!dbService.getConnection()) {
@@ -53,7 +35,7 @@ app.get('/v1/wallet/api/users/<id>/balance', function() {});
             dataconf.mongodb.dbname,
             dataconf.mongodb.port,
             connectionOptions,
-            err => {
+            (err) => {
                 if (err) {
                     logger(err);
                     logger('can\'t connect to MLab')
@@ -69,6 +51,15 @@ app.get('/v1/wallet/api/users/<id>/balance', function() {});
 
                     logger('> Wallet API Started!', host == '::' ? 'localhost': host, port);
                 });
+
+                let authService = require('./components/auth/auth-service');
+
+                app.use(passport.initialize());
+                app.use(passport.session());
+
+                passport.use(authService.localStrategy);
+                passport.serializeUser(authService.serializeUser);
+                passport.deserializeUser(authService.deserializeUser);
         });
     }
 })();
