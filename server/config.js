@@ -18,6 +18,15 @@ module.exports = {
       "dbname": "",
       "username": "",
       "password": ""
+    },
+    "paypal_sdk": {
+      "port": 0,
+      "api": {
+        "host": "",
+        "port": "",
+        "client_id": "",
+        "client_secret": ""
+      }
     }
   },
   "test": {
@@ -27,6 +36,15 @@ module.exports = {
       "dbname": "",
       "username": "",
       "password": ""
+    },
+    "paypal_sdk": {
+      "port": 0,
+      "api": {
+        "host": "",
+        "port": "",
+        "client_id": "",
+        "client_secret": ""
+      }
     }
   },
   "prod": {
@@ -36,6 +54,15 @@ module.exports = {
       "dbname": "",
       "username": "",
       "password": ""
+    },
+    "paypal_sdk": {
+      "port": 0,
+      "api": {
+        "host": "",
+        "port": "",
+        "client_id": "",
+        "client_secret": ""
+      }
     }
   }
 };
