@@ -4,7 +4,7 @@ process.env.NODE_ENV = 'test';
 
 const assert = require('assert'),
     dataconf = require('../../../server/config')['test'],
-    dbService = require('../../../server/services/dbconnection'),
+    dbService = require('../../../server/helpers/dbconnection'),
     should = require('should'),
     User = require('../../../server/components/user/user-model').User;
 

@@ -1,6 +1,6 @@
 'use strict';
 
-const logger = require('../../server/services/logger').logger,
+const logger = require('../../server/helpers/logger').logger,
     should = require('should'),
     sinon = require('sinon');
 

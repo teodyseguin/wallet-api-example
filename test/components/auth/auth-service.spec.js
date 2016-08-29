@@ -4,7 +4,7 @@ process.env.NODE_ENV = 'test';
 
 const authService = require('../../../server/components/auth/auth-service'),
     dataconf = require('../../../server/config')['test'],
-    dbService = require('../../../server/services/dbconnection'),
+    dbService = require('../../../server/helpers/dbconnection'),
     should = require('should'),
     sinon = require('sinon');
 

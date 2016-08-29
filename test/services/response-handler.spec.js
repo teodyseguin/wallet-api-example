@@ -2,7 +2,7 @@
 
 process.env.NODE_ENV = 'test';
 
-const responseHandler = require('../../server/services/response-handler'),
+const responseHandler = require('../../server/helpers/response-handler'),
     should = require('should'),
     sinon = require('sinon');
 

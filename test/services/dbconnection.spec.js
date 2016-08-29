@@ -4,7 +4,7 @@ process.env.NODE_ENV = 'test';
 
 const env = process.env.NODE_ENV || 'test',
     dataconf = require('../../server/config')[env],
-    dbService = require('../../server/services/dbconnection'),
+    dbService = require('../../server/helpers/dbconnection'),
     should = require('should'),
     sinon = require('sinon');
 

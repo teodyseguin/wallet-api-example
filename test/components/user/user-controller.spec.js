@@ -2,7 +2,7 @@
 
 const controller = require('../../../server/components/user/user-controller').UserController,
     dataconf = require('../../../server/config')['test'],
-    dbService = require('../../../server/services/dbconnection'),
+    dbService = require('../../../server/helpers/dbconnection'),
     should = require('should'),
     sinon = require('sinon');
 
