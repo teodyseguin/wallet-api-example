@@ -7,7 +7,8 @@ const bodyParser = require('body-parser'),
     dbService = require('./helpers/dbconnection'),
     logger = require('./helpers/logger').logger,
     userRouter = require('./components/user/user-router'),
-    authRouter = require('./components/auth/auth-router');
+    authRouter = require('./components/auth/auth-router'),
+    balanceRouter = require('./components/credit/credit-router');
 
 let app = express();
 
@@ -15,6 +16,8 @@ app.use(bodyParser.json());
 
 // API to create a user
 app.use('/v1/wallet/api/users', userRouter);
+// API to credit user balance
+app.use('/v1/wallet/api/credits', balanceRouter);
 
 (function() {
     if (!dbService.getConnection()) {
