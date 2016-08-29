@@ -4,8 +4,8 @@ const bodyParser = require('body-parser'),
     env = process.env.NODE_ENV || 'dev',
     express = require('express'),
     dataconf = require('./config')[env],
-    dbService = require('./services/dbconnection'),
-    logger = require('./services/logger').logger,
+    dbService = require('./helpers/dbconnection'),
+    logger = require('./helpers/logger').logger,
     userRouter = require('./components/user/user-router'),
     authRouter = require('./components/auth/auth-router');
 
