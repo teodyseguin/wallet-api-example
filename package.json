@@ -17,7 +17,8 @@
     "express": "^4.14.0",
     "mongoose": "^4.5.9",
     "passport": "^0.3.2",
-    "passport-local": "^1.0.0"
+    "passport-local": "^1.0.0",
+    "paypal-rest-sdk": "^1.6.9"
   },
   "devDependencies": {
     "forever": "^0.15.2",
