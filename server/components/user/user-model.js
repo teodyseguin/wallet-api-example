@@ -1,7 +1,7 @@
 'use strict';
 
 const bcrypt = require('bcrypt'),
-    dbService = require('../../services/dbconnection'),
+    dbService = require('../../helpers/dbconnection'),
     mongoose = require('mongoose'),
     work_factor = 10;
 

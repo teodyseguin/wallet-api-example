@@ -1,6 +1,6 @@
 'use strict';
 
-const responseHandler = require('../../services/response-handler'),
+const responseHandler = require('../../helpers/response-handler'),
     UserService = require('./user-service').UserService;
 
 /**
