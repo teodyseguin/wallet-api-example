@@ -3,8 +3,8 @@
 const LocalStrategy = require('passport-local').Strategy,
     UserService = require('../user/user-service').UserService;
 
-let User = UserService.getUser(),
-    modelInstance = User.getUserModel();
+let User = null,
+    modelInstance = null;
 
 function deserializeUser(id, callback) {
     modelInstance.findById(
@@ -33,14 +33,22 @@ function ensureAuthenticated(req, res, next) {
 }
 
 function localStrategy() {
+    if (User == null) {
+        User = UserService.getUser();
+    }
+
+    if (modelInstance == null) {
+        modelInstance = User.getUserModel();
+    }
+
     return new LocalStrategy({
         usernameField: 'email',
         passwordField: 'password'
     }, modelInstance.verifyMatch);
 }
 
-function serializeUser(user, callback) {
-    callback(null, user._id);
+function serializeUser(user, done) {
+    done(null, user._id);
 }
 
 module.exports = {
