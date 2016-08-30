@@ -8,16 +8,26 @@ const bodyParser = require('body-parser'),
     logger = require('./helpers/logger').logger,
     userRouter = require('./components/user/user-router'),
     authRouter = require('./components/auth/auth-router'),
-    balanceRouter = require('./components/credit/credit-router');
+    creditRouter = require('./components/credit/credit-router'),
+    session = require('express-session'),
+    crypto = require('crypto');
 
 let app = express();
+
+crypto.randomBytes(48, (err, buffer) => {
+    var secret = buffer.toString('hex');
+
+    app.use(session({
+        secret: secret,
+        resave: true,
+        saveUninitialized: false
+    }));
+});
 
 app.use(bodyParser.json());
 
 // API to create a user
 app.use('/v1/wallet/api/users', userRouter);
-// API to credit user balance
-app.use('/v1/wallet/api/credits', balanceRouter);
 
 (function() {
     if (!dbService.getConnection()) {
@@ -38,7 +48,7 @@ app.use('/v1/wallet/api/credits', balanceRouter);
             (err) => {
                 if (err) {
                     logger(err);
-                    logger('can\'t connect to MLab')
+                    logger('can\'t connect to MLab');
                     return;
                 }
 
@@ -64,6 +74,9 @@ app.use('/v1/wallet/api/credits', balanceRouter);
 
                 // API to authenticate incoming user
                 app.use('/v1/wallet/api/auth', authRouter);
+
+                // API to credit user balance
+                app.use('/v1/wallet/api/credits', creditRouter);
         });
     }
 })();
