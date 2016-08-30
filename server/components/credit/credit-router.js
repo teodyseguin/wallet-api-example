@@ -1,8 +1,9 @@
 'use strict';
 
 const router = require('express').Router(),
-    controller = require('./credit-controller').CreditController;
+    controller = require('./credit-controller').CreditController,
+    authService = require('../auth/auth-service');
 
-router.post('/:id/:amount', controller.create);
+router.post('/', authService.ensureAuthenticated, controller.credit);
 
 module.exports = router;
