@@ -9,8 +9,10 @@ const bodyParser = require('body-parser'),
     userRouter = require('./components/user/user-router'),
     authRouter = require('./components/auth/auth-router'),
     creditRouter = require('./components/credit/credit-router'),
+    loadRouter = require('./pages/load/load-router'),
     session = require('express-session'),
-    crypto = require('crypto');
+    crypto = require('crypto'),
+    path = require('path');
 
 let app = express();
 
@@ -23,11 +25,6 @@ crypto.randomBytes(48, (err, buffer) => {
         saveUninitialized: false
     }));
 });
-
-app.use(bodyParser.json());
-
-// API to create a user
-app.use('/v1/wallet/api/users', userRouter);
 
 (function() {
     if (!dbService.getConnection()) {
@@ -72,11 +69,24 @@ app.use('/v1/wallet/api/users', userRouter);
                 passport.serializeUser(authService.serializeUser);
                 passport.deserializeUser(authService.deserializeUser);
 
+                app.use(bodyParser.json());
+
+                // API to create a user
+                app.use('/v1/wallet/api/users', userRouter);
+
                 // API to authenticate incoming user
                 app.use('/v1/wallet/api/auth', authRouter);
 
                 // API to credit user balance
                 app.use('/v1/wallet/api/credits', creditRouter);
+
+                app.use('/load', loadRouter);
+
+                // serves the 404 page here, if no match are found
+                app.use(function (req, res) {
+                    res.status(404);
+                    res.type('txt').send('Page not found');
+                });
         });
     }
 })();
