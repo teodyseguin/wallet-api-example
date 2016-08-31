@@ -10,6 +10,8 @@ const bodyParser = require('body-parser'),
     authRouter = require('./components/auth/auth-router'),
     creditRouter = require('./components/credit/credit-router'),
     loadRouter = require('./pages/load/load-router'),
+    loginRouter = require('./pages/login/login-router'),
+    executeRouter = require('./pages/execute/execute-router'),
     session = require('express-session'),
     crypto = require('crypto'),
     path = require('path');
@@ -81,6 +83,12 @@ crypto.randomBytes(48, (err, buffer) => {
                 app.use('/v1/wallet/api/credits', creditRouter);
 
                 app.use('/load', loadRouter);
+                app.use('/static', express.static(__dirname + '/pages/load'));
+
+                app.use('/login', loginRouter);
+                app.use('/static', express.static(__dirname + '/pages/login'));
+
+                app.use('/execute', executeRouter);
 
                 // serves the 404 page here, if no match are found
                 app.use(function (req, res) {
