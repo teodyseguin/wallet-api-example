@@ -9,7 +9,7 @@
 
         $.ajax({
             type: 'POST',
-            url: '/v1/wallet/api/auth/login',
+            url: '/v1/wallet/api/auth',
             data: JSON.stringify(loginDetails),
             contentType: 'application/json',
             success: function(data) {
