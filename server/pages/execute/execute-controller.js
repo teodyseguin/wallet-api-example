@@ -4,6 +4,10 @@ const paypal = require('paypal-rest-sdk'),
     response = require('../../helpers/response-handler'),
     service = require('../../components/credit/credit-service').CreditService;
 
+/**
+ * Our object class which serves as the execution page after successful
+ * payment/checkout is made on paypal
+ */
 class ExecuteController {
     page(req, res) {
         let paymentId = req.query.paymentId,

@@ -3,6 +3,11 @@
 const env = process.env.NODE_ENV || 'dev',
     dataconf = require('../config')[env];
 
+/**
+ * Our helper class for payment management option
+ * For now, we only have paypal, but sooner we'll
+ * gonna add few more payment options here
+ */
 class PaymentMethod {
     paypal(data) {
         return {

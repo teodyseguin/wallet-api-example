@@ -18,8 +18,10 @@ const bodyParser = require('body-parser'),
 
 let app = express();
 
+// generating a random string here, which we intend to use
+// as a secret key value
 crypto.randomBytes(48, (err, buffer) => {
-    var secret = buffer.toString('hex');
+    let secret = buffer.toString('hex');
 
     app.use(session({
         secret: secret,
