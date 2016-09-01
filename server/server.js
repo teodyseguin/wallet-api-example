@@ -82,11 +82,11 @@ crypto.randomBytes(48, (err, buffer) => {
                 // API to credit user balance
                 app.use('/v1/wallet/api/credits', creditRouter);
 
+                app.use('/', loginRouter);
+                app.use('/static', express.static(__dirname + '/pages/login'));
+
                 app.use('/load', loadRouter);
                 app.use('/static', express.static(__dirname + '/pages/load'));
-
-                app.use('/login', loginRouter);
-                app.use('/static', express.static(__dirname + '/pages/login'));
 
                 app.use('/execute', executeRouter);
 
