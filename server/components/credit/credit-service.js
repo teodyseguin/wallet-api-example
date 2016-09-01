@@ -35,26 +35,42 @@ let CreditService = {
      *  our messenger function for response
      */
     setBalance: function(model, user, payment, callback) {
-        model.findOneAndUpdate(
+        model.findOne(
             {
-                _id: user._id
+                user: user._id
             },
-            {
-                user: user._id,
-                balance: payment.transactions[0].amount.total
-            },
-            {
-                upsert: true
-            },
-            (err, doc) => {
+            (err, cr) => {
                 if (err) {
                     return callback(err);
                 }
                 else {
-                    return callback(null);
+                    if (!cr) {
+                        let credit = new model({ user: user._id, balance: payment.transactions[0].amount.total });
+
+                        credit.save((err) => {
+                            if (err) {
+                                return callback(err);
+                            }
+
+                            return callback(null);
+                        });
+                    }
+                    else {
+                        model.update(
+                            { user: user._id },
+                            { balance: parseInt(cr.balance) + parseInt(payment.transactions[0].amount.total) },
+                            (err) => {
+                                if (err) {
+                                    return callback(err);
+                                }
+
+                                return callback(null);
+                            }
+                        );
+                    }
                 }
             }
-        )
+        );
     }
 };
 
