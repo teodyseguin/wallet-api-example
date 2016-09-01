@@ -34,7 +34,7 @@ let CreditService = {
      * @param callback
      *  our messenger function for response
      */
-    setBalance: function(model, user, payment, callback) {
+    setBalance: function(model, user, payment, increase, callback) {
         model.findOne(
             {
                 user: user._id
@@ -45,7 +45,7 @@ let CreditService = {
                 }
                 else {
                     if (!cr) {
-                        let credit = new model({ user: user._id, balance: payment.transactions[0].amount.total });
+                        let credit = new model({ user: user._id, balance: payment });
 
                         credit.save((err) => {
                             if (err) {
@@ -56,9 +56,18 @@ let CreditService = {
                         });
                     }
                     else {
+                        let newBalance = 0;
+
+                        if (increase === true) {
+                            newBalance = parseInt(cr.balance) + parseInt(payment);
+                        }
+                        else {
+                            newBalance = parseInt(cr.balance) - parseInt(payment);
+                        }
+
                         model.update(
                             { user: user._id },
-                            { balance: parseInt(cr.balance) + parseInt(payment.transactions[0].amount.total) },
+                            { balance: newBalance },
                             (err) => {
                                 if (err) {
                                     return callback(err);
