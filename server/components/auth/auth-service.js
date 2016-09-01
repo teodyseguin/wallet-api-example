@@ -28,7 +28,8 @@ function ensureAuthenticated(req, res, next) {
         return next();
     }
     else {
-        return res.status(401).send();
+        res.status(401);
+        res.type('txt').send('Access denied');
     }
 }
 
