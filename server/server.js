@@ -1,20 +1,21 @@
 'use strict';
 
-const bodyParser = require('body-parser'),
-    env = process.env.NODE_ENV || 'dev',
-    express = require('express'),
-    dataconf = require('./config')[env],
-    dbService = require('./helpers/dbconnection'),
-    logger = require('./helpers/logger').logger,
-    userRouter = require('./components/user/user-router'),
-    authRouter = require('./components/auth/auth-router'),
+const authRouter = require('./components/auth/auth-router'),
+    bodyParser = require('body-parser'),
+    confenv = process.env.NODE_ENV || 'dev',
     creditRouter = require('./components/credit/credit-router'),
+    crypto = require('crypto'),
+    dataconf = require('./config')[confenv],
+    dbService = require('./helpers/dbconnection'),
+    debitRouter = require('./components/debit/debit-router'),
+    executeRouter = require('./pages/execute/execute-router'),
+    express = require('express'),
     loadRouter = require('./pages/load/load-router'),
     loginRouter = require('./pages/login/login-router'),
-    executeRouter = require('./pages/execute/execute-router'),
+    logger = require('./helpers/logger').logger,
     session = require('express-session'),
-    crypto = require('crypto'),
-    path = require('path');
+    path = require('path'),
+    userRouter = require('./components/user/user-router');
 
 let app = express();
 
@@ -83,6 +84,8 @@ crypto.randomBytes(48, (err, buffer) => {
 
                 // API to credit user balance
                 app.use('/v1/wallet/api/credits', creditRouter);
+
+                app.use('/v1/wallet/api/debits', debitRouter);
 
                 app.use('/', loginRouter);
                 app.use('/static', express.static(__dirname + '/pages/login'));
