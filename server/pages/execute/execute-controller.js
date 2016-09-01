@@ -1,22 +1,32 @@
 'use strict';
 
 const paypal = require('paypal-rest-sdk'),
-    response = require('../../helpers/response-handler');
+    response = require('../../helpers/response-handler'),
+    service = require('../../components/credit/credit-service').CreditService;
 
 class ExecuteController {
     page(req, res) {
         let paymentId = req.query.paymentId,
-            execute = { payer_id: req.query.PayerID };
+            execute = { payer_id: req.query.PayerID },
+            Credit = service.getCredit(),
+            Model = Credit.getCreditModel();
 
         paypal.payment.execute(paymentId, execute, (err, payment) => {
-            console.log(payment);
-
             if (err) {
                 response.printResponse(err, res, {});
             }
             else {
-                // store to database algorithm here
-                res.redirect('/load');
+                if (Model) {
+                    service.setBalance(Model, req.user, payment, err => {
+                        if (err) {
+                            response.printResponse(err, res, {});
+                            return;
+                        }
+
+                        res.redirect('/load');
+                        return;
+                    });
+                }
             }
         });
     }
