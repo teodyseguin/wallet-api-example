@@ -32,17 +32,21 @@ describe('Testing User Component', function() {
         dataconf.mongodb.dbname,
         dataconf.mongodb.port,
         connectionOptions,
-        err => {
-            let model = UserObject.getUserModel(),
-                schema = UserObject.getUserSchema();
-
-            it('getUserSchema() should return the schema object', function() {
-                assert.equal('object', typeof schema);
-            });
-
-            it('getUserModel() should return the model function', function() {
-                assert.equal('function', typeof model);
-            });
-        }
+        err => {}
     );
+
+    let model = UserObject.getUserModel(),
+        schema = UserObject.getUserSchema();
+
+    it('getUserSchema() should return the schema object', function() {
+        setTimeout(() => {
+            assert.equal('object', typeof schema);
+        }, 1000);
+    });
+
+    it('getUserModel() should return the model function', function() {
+        setTimeout(() => {
+            assert.equal('function', typeof model);
+        }, 1000);
+    });
 });
