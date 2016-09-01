@@ -7,13 +7,10 @@ const env = process.env.NODE_ENV || 'dev',
     response = require('../../helpers/response-handler');
 
 class CreditController {
-    constructor() {
-        this.payment = new PaymentMethod();
-    }
-
     credit(req, res) {
-        let method = req.body.payment_method,
-            paymentObj = this.payment[method](req.body);
+        let payment = new PaymentMethod(),
+            method = req.body.payment_method,
+            paymentObj = payment[method](req.body);
 
         // load the paypal configuration and make use of it
         // from the succeeding procedures below
