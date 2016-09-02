@@ -1,4 +1,4 @@
-(function() {
+(function($) {
     'use strict';
 
     $('#load').click(function() {
@@ -24,8 +24,8 @@
             type: 'GET',
             url: '/v1/wallet/api/credits',
             success: function(data) {
-                $('#current-balance span').text(data.currency + ' ' + data.balance)
+                $('#current-balance span').text(data.balance + ' ' + data.currency)
             }
         });
     });
-})();
+})(jQuery);
