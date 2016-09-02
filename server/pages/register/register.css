@@ -54,3 +54,7 @@ input[type="button"] {
   color: #ffffff;
   width: 100%;
 }
+
+#login {
+  color: #0070ba;
+}
