@@ -27,7 +27,7 @@ class UserController {
                 .save()
                 .then(
                     function userResolution(u) {
-                        responseHandler.printResponse(null, res, u);
+                        responseHandler.printResponse(null, res, { registered: true });
                     },
                     function userRejection(err) {
                         responseHandler.printResponse(err, res, null);
