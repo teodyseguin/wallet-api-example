@@ -18,4 +18,14 @@
             }
         });
     });
+
+    $(document).ready(function() {
+        $.ajax({
+            type: 'GET',
+            url: '/v1/wallet/api/credits',
+            success: function(data) {
+                $('#current-balance span').text(data.currency + ' ' + data.balance)
+            }
+        });
+    });
 })();
