@@ -54,7 +54,7 @@ class CreditController {
                     if (!cr) {
                         response.printResponse(null, res, {
                             balance: 0,
-                            currency: '$'
+                            currency: 'USD'
                         });
                     }
                     else {
