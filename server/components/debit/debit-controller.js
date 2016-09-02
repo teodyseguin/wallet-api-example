@@ -7,7 +7,10 @@ class DebitController {
     debit(req, res) {
         let Credit = service.getCredit(),
             Model = Credit.getCreditModel(),
-            amount = req.body.amount;
+            amount = {
+                total: req.body.amount,
+                currency: req.body.currency
+            };
 
         if (Model) {
             service.setBalance(Model, req.user, amount, false, err => {
