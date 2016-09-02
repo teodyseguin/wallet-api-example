@@ -37,7 +37,7 @@ HTTP METHOD POST
 
 `/v1/wallet/api/credits`
 
-Caveat
+**Caveat**
 
 Needs to be authenticated first before this endpoint can be executed
 
