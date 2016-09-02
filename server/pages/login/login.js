@@ -1,4 +1,4 @@
-(function() {
+(function($) {
     'use strict';
 
     $('#login').click(function() {
@@ -19,4 +19,4 @@
             }
         });
     });
-})();
+})(jQuery);
