@@ -27,7 +27,7 @@ This assumes that you arleady have a working environment which has a
 * Make sure that you are on the project root directory and just issue the command `npm test` to run our test files. I have used [Mocha](http://mochajs.org/) as the unit testing framework for this project.
 
 ## API's
-* Please refer to the API.md
+* Please refer to the [API.md](https://github.com/teodyseguin/wallet-api/edit/develop/API.md)
 
 ## Future Implementation
 * Additional payment option other than the Paypal, most probably Credit Card option
