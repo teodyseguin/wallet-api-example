@@ -20,7 +20,14 @@ This assumes that you arleady have a working environment which has a
 
 ### Running the project
 * Clone this project. Once it's done, change directory to the project root folder and run `npm install` do download all the project dependencies
-* Next is to issue the command `npm start`. This will serve our project page in `http://localhost:3000`. It should be self explanatory enough to use the presented UI and play around with the Wallet UI :)
+* Next is to issue the command `npm start`. This will serve our project page in `http://localhost:3000`. It should be self explanatory enough to use the presented UI and play around with the Wallet API :)
+
+### API's
+* Please refer to the API.md
+
+## Future Implementation
+* Additional payment option other than the Paypal, most probably Credit Card option
+* Virtualization via [Docker](https://www.docker.com)
   
 ## Taiga Kanban Board
 I have made a kanban board to keep track of every task I have done to this project.
