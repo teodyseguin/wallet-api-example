@@ -6,7 +6,7 @@ HTTP METHOD POST
 
 `/v1/wallet/api/users`
 
-Acceptable payload
+**Acceptable payload**
 
 ```
 {
@@ -22,7 +22,7 @@ HTTP METHOD POST
 
 `/v1/wallet/api/auth`
 
-Acceptable payload
+**Acceptable payload**
 
 ```
 {
@@ -41,7 +41,7 @@ HTTP METHOD POST
 
 Needs to be authenticated first before this endpoint can be executed
 
-Acceptable payload
+**Acceptable payload**
 
 ```
 intent: 'sale',
@@ -65,7 +65,7 @@ transactions: [{
 
 HTTP METHOD GET `/v1/wallet/api/credits`
 
-Caveat
+**Caveat**
 
 Needs to be authenticated first before this endpoint can be executed
 
@@ -73,7 +73,7 @@ Needs to be authenticated first before this endpoint can be executed
 
 HTTP METHOD POST `/v1/wallet/api/debits`
 
-Acceptable payload
+**Acceptable payload**
 
 ```
 {
@@ -81,7 +81,7 @@ Acceptable payload
 }
 ```
 
-Caveat
+**Caveat**
 
 Needs to be authenticated first before this endpoint can be executed
 
