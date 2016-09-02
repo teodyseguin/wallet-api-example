@@ -4,10 +4,8 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "find ./test -name '*.spec.js' | xargs ./node_modules/mocha/bin/mocha -R spec",
-    "start": "./node_modules/forever/bin/forever start -d server.js",
-    "restart": "./node_modules/forever/bin/forever restart -d server.js",
-    "stop": "./node_modules/forever/bin/forever stop -d server.js"
+    "test": "gulp test",
+    "start": "node server/server"
   },
   "author": "Teody C. Seguin",
   "license": "ISC",
@@ -23,7 +21,6 @@
     "paypal-rest-sdk": "^1.6.9"
   },
   "devDependencies": {
-    "forever": "^0.15.2",
     "gulp": "^3.9.1",
     "gulp-istanbul": "^1.1.1",
     "gulp-load-plugins": "^1.2.4",
