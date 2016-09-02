@@ -13,8 +13,9 @@ const authRouter = require('./components/auth/auth-router'),
     loadRouter = require('./pages/load/load-router'),
     loginRouter = require('./pages/login/login-router'),
     logger = require('./helpers/logger').logger,
-    session = require('express-session'),
     path = require('path'),
+    registerRouter = require('./pages/register/register-router'),
+    session = require('express-session'),
     userRouter = require('./components/user/user-router');
 
 let app = express();
@@ -85,10 +86,14 @@ crypto.randomBytes(48, (err, buffer) => {
                 // API to credit user balance
                 app.use('/v1/wallet/api/credits', creditRouter);
 
+                // API to debit user balance
                 app.use('/v1/wallet/api/debits', debitRouter);
 
                 app.use('/', loginRouter);
                 app.use('/static', express.static(__dirname + '/pages/login'));
+
+                app.use('/register', registerRouter);
+                app.use('/static', express.static(__dirname + '/pages/register'));
 
                 app.use('/load', loadRouter);
                 app.use('/static', express.static(__dirname + '/pages/load'));
