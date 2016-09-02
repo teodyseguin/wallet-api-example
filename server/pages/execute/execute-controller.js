@@ -21,7 +21,7 @@ class ExecuteController {
             }
             else {
                 if (Model) {
-                    let amount = payment.transactions[0].amount.total;
+                    let amount = payment.transactions[0].amount;
 
                     service.setBalance(Model, req.user, amount, true, err => {
                         if (err) {
