@@ -7,7 +7,7 @@ The development stack of this simple project are managed by the following
   has 2 collections:
   * `users`: Use to contain user information
   * `credits`: Use to contain the user balance information
-* `Paypal Sandbox`: This payment gateway is used to simulate transaction for loading up your wallet. For the mean time, this is the only payment option that can use.
+* `Paypal Sandbox`: This payment gateway is used to simulate transaction for loading up your wallet. For the mean time, this is the only payment option in use.
   * `Sandbox User`: The sandbox user email is sandboxuser-buyer@gmail.com/buhkahmam99. Use this account for checking out a load balance.
 * `NodeJS`: Is the programming language used to write this project.
 
