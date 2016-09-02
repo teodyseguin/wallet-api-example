@@ -19,6 +19,9 @@ class Credit {
             },
             balance: {
                 type: Number
+            },
+            currency: {
+                type: String
             }
         });
 
