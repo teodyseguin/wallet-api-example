@@ -4,7 +4,8 @@ const env = process.env.NODE_ENV || 'dev',
     dataconf = require('../../config')[env],
     paypal = require('paypal-rest-sdk'),
     PaymentMethod = require('../../helpers/payment').PaymentMethod,
-    response = require('../../helpers/response-handler');
+    response = require('../../helpers/response-handler'),
+    service = require('./credit-service').CreditService;
 
 class CreditController {
     credit(req, res) {
@@ -34,6 +35,39 @@ class CreditController {
                 }
             }
         });
+    }
+
+    retrieve(req, res) {
+        let Credit = service.getCredit(),
+            Model = Credit.getCreditModel();
+
+        Model.findOne(
+            {
+                user: req.user._id
+            },
+            (err, cr) => {
+                if (err) {
+                    response.printResponse(err, res, {});
+                    return;
+                }
+                else {
+                    if (!cr) {
+                        response.printResponse(null, res, {
+                            balance: 0,
+                            currency: '$'
+                        });
+                    }
+                    else {
+                        response.printResponse(null, res, {
+                            balance: cr.balance,
+                            currency: cr.currency
+                        });
+                    }
+                }
+
+                return;
+            }
+        );
     }
 }
 
