@@ -1,0 +1,100 @@
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  background-color: #f7f9fa;
+  color: #333333;
+}
+
+header {
+  margin-bottom: 20px;
+}
+
+header .title {
+  width: 960px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.title h1 {
+  font-size: 18px;
+  font-weight: bold;
+  float: left;
+}
+
+#logout {
+  float: right;
+  font-size: 12px;
+  font-weight: bold;
+  display: inline-block;
+  margin: 10px 0;
+  text-decoration: none;
+  color: #333333;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #cccccc;
+}
+
+header #greet {
+  background-color: #009cde;
+  color: #ffffff;
+  padding: 40px 0;
+  width: 100%;
+  font-size: 32px;
+}
+
+#greet .inner {
+  width: 960px;
+  margin: 0 auto;
+}
+
+header h1 {
+  font-weight: normal;
+}
+
+main .inner {
+  height: 100%;
+  position: relative;
+  width: 960px;
+  margin: 0 auto;
+}
+
+article {
+  width: 300px;
+  background-color: #ffffff;
+  padding: 20px;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+a {
+  color: blue;
+}
+
+#current-balance {
+  margin-top: 0;
+}
+
+#current-balance span {
+  font-size: 36px;
+  font-weight: normal;
+}
+
+input[type="button"] {
+  border: none;
+  padding: 8px 17px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-weight: bold;
+  background-color: #cccccc;
+}
+
+fieldset {
+  border: 1px solid silver;
+}
