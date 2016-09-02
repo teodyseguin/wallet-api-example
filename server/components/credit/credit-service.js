@@ -45,7 +45,13 @@ let CreditService = {
                 }
                 else {
                     if (!cr) {
-                        let credit = new model({ user: user._id, balance: payment });
+                        let credit = new model(
+                            {
+                                user: user._id,
+                                balance: payment.total,
+                                currency: payment.currency
+                            }
+                        );
 
                         credit.save((err) => {
                             if (err) {
@@ -59,10 +65,10 @@ let CreditService = {
                         let newBalance = 0;
 
                         if (increase === true) {
-                            newBalance = parseInt(cr.balance) + parseInt(payment);
+                            newBalance = parseInt(cr.balance) + parseInt(payment.total);
                         }
                         else {
-                            newBalance = parseInt(cr.balance) - parseInt(payment);
+                            newBalance = parseInt(cr.balance) - parseInt(payment.total);
                         }
 
                         model.update(
