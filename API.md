@@ -1,6 +1,6 @@
 ## Exposed API's
 
-#### API endpoint for creating a user
+### API endpoint for creating a user
 
 HTTP METHOD POST
 
@@ -24,7 +24,7 @@ HTTP METHOD POST
 }
 ```
 
-#### API endpoint for authenticating a user
+### API endpoint for authenticating a user
 
 HTTP METHOD POST 
 
@@ -39,7 +39,7 @@ HTTP METHOD POST
 }
 ```
 
-#### API endpoint for crediting a user balance
+### API endpoint for crediting a user balance
 
 HTTP METHOD POST 
 
@@ -69,7 +69,7 @@ Needs to be authenticated first before this endpoint can be executed
 
 The response is a redirect url to paypal payment. This is used to confirm payment to paypal.
 
-#### API endpoint for retrieving a user balance
+### API endpoint for retrieving a user balance
 
 HTTP METHOD GET `/v1/wallet/api/credits`
 
@@ -86,7 +86,7 @@ Needs to be authenticated first before this endpoint can be executed
 }
 ```
 
-#### API endpoint for debetting a user balance
+### API endpoint for debetting a user balance
 
 HTTP METHOD POST `/v1/wallet/api/debits`
 
