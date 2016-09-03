@@ -23,7 +23,7 @@ This assumes that you arleady have a working environment which has a
 * Clone this project. Once it's done, change directory to the project root folder and run `npm install` do download all the project dependencies
 * Next is to issue the command `npm start`. This will serve our project page in `http://localhost:3000`. It should be self explanatory enough to use the presented UI and play around with the Wallet API :)
 
-### Runnin the project tests
+### Running the project tests
 * Make sure that you are on the project root directory and just issue the command `npm test` to run our test files. I have used [Mocha](http://mochajs.org/) as the unit testing framework for this project.
 
 ## API's
