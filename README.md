@@ -20,7 +20,7 @@ This assumes that you arleady have a working environment which has a
 * and of course [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) to clone this project
 
 ### Running the project
-* Clone this project. Once it's done, change directory to the project root folder and run `npm install` do download all the project dependencies
+* Clone this project. Once it's done, change directory to the project root folder and run `npm install` to download all the project dependencies
 * Next is to issue the command `npm start`. This will serve our project page in `http://localhost:3000`. It should be self explanatory enough to use the presented UI and play around with the Wallet API :)
 
 ### Running the project tests
