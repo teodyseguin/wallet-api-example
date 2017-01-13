@@ -3,7 +3,7 @@
  * information that are essential to make our app running
  * Other than the database information, we add more
  * properties in here when necessary. Each of this details
- * are per 'environment'. As you can we have 3 environments
+ * are per 'environment'. As you can see, we have 3 environments
  * here:
  *
  * dev => development environment
