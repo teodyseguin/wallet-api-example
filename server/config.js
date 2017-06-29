@@ -24,8 +24,8 @@ module.exports = {
       "api" : {
         "host" : "api.sandbox.paypal.com",
         "port" : "",
-        "client_id" : "Ab8om2JQUUd0D5Y-XRPuvI6LWDSFq7wKOrLNLfKNsa4KUIipVTWHQjxMyiLrvW4RTbuuwMOLrWFEiIVz",
-        "client_secret" : "EJ3AziMMSJ7Mye-KLqjRX9FjU5v_2gY9nyAoEo--yPTW6hhF5Q8es4jAWEahH8zMHzFgxLNZ4lenXWzV"
+        "client_id" : "",
+        "client_secret" : ""
       },
       "return_url": "http://localhost:3000/execute",
       "cancel_url": "http://localhost:3000/cancel"
@@ -44,8 +44,8 @@ module.exports = {
       "api" : {
         "host" : "api.sandbox.paypal.com",
         "port" : "",
-        "client_id" : "Ab8om2JQUUd0D5Y-XRPuvI6LWDSFq7wKOrLNLfKNsa4KUIipVTWHQjxMyiLrvW4RTbuuwMOLrWFEiIVz",
-        "client_secret" : "EJ3AziMMSJ7Mye-KLqjRX9FjU5v_2gY9nyAoEo--yPTW6hhF5Q8es4jAWEahH8zMHzFgxLNZ4lenXWzV"
+        "client_id" : "",
+        "client_secret" : ""
       },
       "return_url": "http://localhost:3000/execute",
       "cancel_url": "http://localhost:3000/cancel"
@@ -64,11 +64,12 @@ module.exports = {
       "api" : {
         "host" : "api.sandbox.paypal.com",
         "port" : "",
-        "client_id" : "Ab8om2JQUUd0D5Y-XRPuvI6LWDSFq7wKOrLNLfKNsa4KUIipVTWHQjxMyiLrvW4RTbuuwMOLrWFEiIVz",
-        "client_secret" : "EJ3AziMMSJ7Mye-KLqjRX9FjU5v_2gY9nyAoEo--yPTW6hhF5Q8es4jAWEahH8zMHzFgxLNZ4lenXWzV"
+        "client_id" : "",
+        "client_secret" : ""
       },
       "return_url": "http://localhost:3000/execute",
       "cancel_url": "http://localhost:3000/cancel"
     }
   }
 };
+
