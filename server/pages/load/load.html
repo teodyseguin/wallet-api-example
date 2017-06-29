@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Load your Wallet</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href="/static/load.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <main>
+      <header>
+        <div class="title">
+          <h1>Wallet API</h1>
+
+          <a href="/logout" id="logout">Log out</a>
+        </div>
+
+        <div id="greet">
+          <div class="inner">Hi there!</div>
+        </div>
+      </header>
+
+      <div class="inner">
+        <article>
+          <h3 id="current-balance">Wallet balance <br /><br /><span>0 USD</span></h3>
+          <h4>Load your wallet</h4>
+          <form>
+            <select id="loads">
+              <option value="50" data-currency="USD">$50</option>
+              <option value="100" data-currency="USD">$100</option>
+              <option value="200" data-currency="USD">$200</option>
+            </select>
+            <br />
+            <br />
+            <fieldset>
+              <legend>Payment method</legend>
+              <ul>
+                <li><input type="radio" name="payment_method" value="paypal" checked /> Paypal</li>
+              </ul>
+            </fieldset>
+            <br />
+            <input id="load" type="button" value="Load" />
+          </form>
+        </article>
+      </div>
+
+    </main>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="/static/load.js"></script>
+  </body>
+</html>
