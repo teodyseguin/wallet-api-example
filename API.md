@@ -103,6 +103,6 @@ HTTP METHOD POST `/v1/wallet/api/debits`
 
 Needs to be authenticated first before this endpoint can be executed
 
-## Useful tool for simulation
+### Useful tool for simulation
 Get [Postman](https://chrome.google.com/webstore/detail/postman/fhbjgbiflinjbdggehcddcbncdddomop?hl=en) Chrome App and install it. Use this app so simulate each of these API endpoints.
 
